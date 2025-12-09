@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -24,6 +26,12 @@ public class Item {
     private String description;
 
     private int price;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Brand brand;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Feature> features;
 
 }
 

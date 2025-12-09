@@ -29,28 +29,36 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public boolean addItem(ItemDto item) {
-        if (Objects.isNull(item)) return false;
+    public ItemDto addItem(ItemDto item) {
+        if (Objects.isNull(item)) return null;
 
-        itemRepository.save(itemMapper.toEntity(item));
-        return true;
+        return itemMapper.toDto(itemRepository.save(itemMapper.toEntity(item)));
+
     }
 
     @Override
-    public boolean updateItem(Long id, ItemDto item) {
+    public ItemDto updateItem(Long id, ItemDto item) {
         ItemDto updateItem = getById(id);
 
-        if (Objects.isNull(updateItem) || Objects.isNull(item)) return false;
+        if (Objects.isNull(updateItem) || Objects.isNull(item)) return null;
 
         updateItem.setNameDto(item.getNameDto());
         updateItem.setDescriptionDto(item.getDescriptionDto());
         updateItem.setPrice(item.getPrice());
-        itemRepository.save(itemMapper.toEntity(updateItem));
-        return true;
+        updateItem.setBrand(item.getBrand());
+        updateItem.setFeatures(item.getFeatures());
+        return itemMapper.toDto(itemRepository.save(itemMapper.toEntity(updateItem)));
+
     }
 
     @Override
-    public void deleteItem(Long id) {
+    public boolean deleteItem(Long id) {
         itemRepository.deleteById(id);
+
+        ItemDto check = getById(id);
+        if (Objects.isNull(check)) return true;
+
+        return false;
+
     }
 }

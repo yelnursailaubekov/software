@@ -8,7 +8,7 @@ import practice1.test.model.Item;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {BrandMapper.class, FeatureMapper.class})
 public interface ItemMapper {
 
 
