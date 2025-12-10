@@ -35,6 +35,7 @@ public class BrandApi {
         return new ResponseEntity<>(service.add(dto), HttpStatus.OK);
     }
 
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateItem(@PathVariable(name = "id") Long id,
                                         @RequestBody BrandDto dto){

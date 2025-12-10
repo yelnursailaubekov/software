@@ -1,14 +1,16 @@
 package practice1.test.dto;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import practice1.test.model.Feature;
 
 import java.util.List;
 
-@Getter
-@Setter
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemDto {
     private Long id;
 
@@ -21,5 +23,5 @@ public class ItemDto {
 
     private BrandDto brand;
 
-    private List<Feature> features;
+    private List<FeatureDto> features;
 }
